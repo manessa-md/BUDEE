@@ -1,4 +1,4 @@
-# Pelatihan Google Earth Engine untuk Pengembangan Aplikasi Monitoring Hutan
+# Pelatihan Google Earth Engine 
 Module 1a Google Earth Engine Interface
 --------------
 
