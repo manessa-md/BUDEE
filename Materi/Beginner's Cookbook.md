@@ -97,15 +97,6 @@ What is Earth Engine?
 
 ## Basic functions
 
-### Declaring variables
-
-```javascript
-var variableName = ee.ContainerType(value);
-```
-
-A container object (usually in the form `ee.SomeVariableType`) is used to wrap a
-native JavaScript object so that Google's servers can perform operations on it.
-
 ###  Centering the map
 
 ```javascript
