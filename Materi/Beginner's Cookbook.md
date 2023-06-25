@@ -164,7 +164,7 @@ var dict = ee.Dictionary({five: 5, six: 6});
 ### Points
 
 ```javascript
-var poi = ee.Geometry.Point(0, 45);
+var poi = ee.Geometry.Point(124.676, -0.938);
 ```
 
 ### Multi points
