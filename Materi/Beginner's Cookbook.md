@@ -321,11 +321,11 @@ geometries of interest by extracting them from the corresponding features.
 
 ```javascript
 // Set map center over the state of CT.
-Map.setCenter(124.676, -0.938, 8);
+Map.setCenter(124.676, -0.938, 3);
 // Load US county dataset.
 var countyData = ee.FeatureCollection('FAO/GAUL_SIMPLIFIED_500m/2015/level0');
 // Filter the counties that are in Connecticut (more on filters later).
-var countyConnect = countyData.filter(ee.Filter.eq('ADM0_NAME', 'IDN'));
+var countyConnect = countyData.filter(ee.Filter.eq('ADM0_NAME', 'Indonesia'));
 // Get the union of all the county geometries in Indonesia.
 var countyConnectDiss = countyConnect.union(100);
 // Create a circular area using the first county in the Indonesia
@@ -413,12 +413,12 @@ loading the feature collection of CT counties.
 
 ```javascript
 // Set map center over the state of CT.
-Map.setCenter(-72.6978, 41.6798, 8);
+Map.setCenter(124.2, -0.82, 3);
 // Load US county dataset.
-var countyData = ee.FeatureCollection('TIGER/2018/Counties');
+var countyData = ee.FeatureCollection('FAO/GAUL_SIMPLIFIED_500m/2015/level0');
 // Filter the counties that are in Connecticut.
 var countyConnect = countyData.filter(
-  ee.Filter.eq('STATEFP', '09'));
+  ee.Filter.eq('ADM0_NAME', 'Indonesia'));
 // Add the layer to the map with a specified color and layer name.
 Map.addLayer(countyConnect, {color: 'red'}, 'Original Collection');
 ```
@@ -727,14 +727,14 @@ interest.
 
 ```javascript
 // Set map center over the state of CT.
-Map.setCenter(-72.6978, 41.6798, 8);
+Map.setCenter(124.2, -0.82, 8);
 // Load the MODIS MYD11A2 (8-day LST) image collection.
 var raw = ee.ImageCollection('MODIS/006/MYD11A2');
 // Load US county dataset.
-var countyData = ee.FeatureCollection('TIGER/2018/Counties');
+var countyData = ee.FeatureCollection('FAO/GAUL_SIMPLIFIED_500m/2015/level0');
 // Filter the counties that are in Connecticut.
 // This will be the region of interest for the image operations.
-var roi = countyData.filter(ee.Filter.eq('STATEFP', '09'));
+var roi = countyData.filter(ee.Filter.eq('ADM0_NAME', 'Indonesia'));
 // Examine image collection.
 print(raw);
 ```
@@ -813,10 +813,10 @@ collection.
 // Function to find mean of pixels in region of interest.
 var getRegions = function(image) {
   // Load US county dataset.
-  var countyData = ee.FeatureCollection('TIGER/2018/Counties');
+  var countyData = ee.FeatureCollection('FAO/GAUL_SIMPLIFIED_500m/2015/level0');
   // Filter the counties that are in Connecticut.
   // This will be the region of interest for the operations.
-  var roi=countyData.filter(ee.Filter.eq('STATEFP', '09'));
+  var roi=countyData.filter(ee.Filter.eq('ADM0_NAME', 'Indonesia'));
   return image.reduceRegions({
     // Collection to run operation over.
     collection: roi,
