@@ -332,12 +332,12 @@ geometries of interest by extracting them from the corresponding features.
 // Set map center over the state of CT.
 Map.setCenter(-72.6978, 41.6798, 8);
 // Load US county dataset.
-var countyData = ee.FeatureCollection('TIGER/2018/Counties');
+var countyData = ee.FeatureCollection('FAO/GAUL_SIMPLIFIED_500m/2015/level0');
 // Filter the counties that are in Connecticut (more on filters later).
-var countyConnect = countyData.filter(ee.Filter.eq('STATEFP', '09'));
-// Get the union of all the county geometries in Connecticut.
+var countyConnect = countyData.filter(ee.Filter.eq('ADM0_NAME', 'IDN'));
+// Get the union of all the county geometries in Indonesia.
 var countyConnectDiss = countyConnect.union(100);
-// Create a circular area using the first county in the Connecticut
+// Create a circular area using the first county in the Indonesia
 // FeatureCollection.
 var circle = ee.Feature(countyConnect.first())
     .geometry().centroid(100).buffer(50000, 100);
