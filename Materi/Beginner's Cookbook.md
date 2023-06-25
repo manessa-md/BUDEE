@@ -905,18 +905,3 @@ Export.video.toDrive({
 
 ![Urban growth in Dubai](dubai-change.png)
  
-## Example applications
-
- What can you do with Google Earth Engine?
-
-- [EE Population Explorer](https://google.earthengine.app/view/population-explorer)
-- [EE Ocean Time Series Investigator](https://google.earthengine.app/view/ocean)
-- [Global Surface UHI Explorer](https://yceo.users.earthengine.app/view/uhimap)
-- [Stratifi - cloud-based stratification](https://sabrinaszeto.users.earthengine.app/view/stratifi)
-- [And hundreds more...](https://philippgaertner.github.io/2019/04/earth-engine-apps-inventory/)
-
-## Additional resources
-
-- [Google Earth Engine API documentation](https://developers.google.com/earth-engine/)
-- [Google Earth Engine Developers forum](https://groups.google.com/forum/#!forum/google-earth-engine-developers)
-- [Example scripts from Prof. Dana Tomlin's handouts for his course on Geospatial Software Design](https://github.com/EEYale/example-scripts)
