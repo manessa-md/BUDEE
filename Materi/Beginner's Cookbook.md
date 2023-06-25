@@ -170,13 +170,13 @@ var poi = ee.Geometry.Point(124.676, -0.938);
 ### Multi points
 
 ```javascript
-var multi = ee.Geometry.MultiPoint(0, 45, 5, 6, 70, -56);
+var multi = ee.Geometry.MultiPoint(124.676, -0.938, 125.676, -0.938, 124.676, -1.938, 125.676, -1.938);
 ```
 
 ### Line string
 
 ```javascript
-var lineStr = ee.Geometry.LineString([[0, 45], [5, 6], [70, -56]]);
+var lineStr = ee.Geometry.LineString([[124.676, -0.938], [125.676, -0.938], [124.676, -1.938], [125.676, -1.938]]);
 ```
 
 ### Multi-line string
@@ -184,7 +184,7 @@ var lineStr = ee.Geometry.LineString([[0, 45], [5, 6], [70, -56]]);
 ```javascript
 var mLineStr =
 ee.Geometry.MultiLineString(
-    [[[0, 45], [5, 6], [70, -56]], [[0, -45], [-5, -6], [-70, 56]]]);
+    [[[124.676, -0.938], [125.676, -0.938], [124.676, -1.938]], [[124, -1.5], [125, -0.9], [124, -1.5], [125, -1.5]]]);
 ```
 
 ### Linear ring
