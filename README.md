@@ -35,7 +35,7 @@ Setelah mengikuti pelatihan ini peserta pelatihan diharapkan mampu:
 2. [Pengenalan GEE](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/main/Presentasi/03_GEE%20Indonesia%20hands-on%202022.pdf)
 
 
-**Module Pelatihan Dinas Lingkungan Hidup dan Kehutanan provinsi Papua dapat diakses pada link berikut:**
+**Module Pelatihan dapat diakses pada link berikut:**
 
 1. [Module 1: Dasar Coding Java Script dan Pengenalan aplikasi Google Earth Engine](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/main/Materi/Module01.md)
 2. [Module 2: Dasar Google Earth Engine](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/main/Materi/Module02.md)
