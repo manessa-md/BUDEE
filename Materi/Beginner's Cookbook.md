@@ -321,7 +321,7 @@ geometries of interest by extracting them from the corresponding features.
 
 ```javascript
 // Set map center over the state of CT.
-Map.setCenter(-72.6978, 41.6798, 8);
+Map.setCenter(124.676, -0.938, 8);
 // Load US county dataset.
 var countyData = ee.FeatureCollection('FAO/GAUL_SIMPLIFIED_500m/2015/level0');
 // Filter the counties that are in Connecticut (more on filters later).
