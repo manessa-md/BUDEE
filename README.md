@@ -31,7 +31,7 @@ Setelah mengikuti pelatihan ini peserta pelatihan diharapkan mampu:
 
 **Materi Presentasi dapat diakses pada link berikut:**
 
-1. [Dasar Penginderaan Jauh](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/main/Presentasi/01_BasicRS-July2022.pdf)
+1. [Histrorical Upwelling](https://github.com/manessa-md/BUDEE/blob/main/Materi/MDMM-Pemantauan%20Historical%20Upwelling%20Menggunakan%20Data%20Penginderaan%20Jauh.pdf)
 2. [Pengenalan GEE](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/main/Presentasi/03_GEE%20Indonesia%20hands-on%202022.pdf)
 
 
