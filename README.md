@@ -38,4 +38,4 @@ Setelah mengikuti pelatihan ini peserta pelatihan diharapkan mampu:
 **Module Pelatihan dapat diakses pada link berikut:**
 
 1. [Module 1: Dasar Coding Java Script dan Pengenalan aplikasi Google Earth Engine](https://github.com/manessa-md/BUDEE/blob/main/Module01.md)
-2. [Module 2: Dasar Google Earth Engine](https://github.com/manessa-md/BUDEE/blob/main/Module02.md)
+2. [Module 2: Sentinel-2](https://github.com/manessa-md/BUDEE/blob/main/Module02.md)
