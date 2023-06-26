@@ -123,8 +123,10 @@ var chart = ui.Chart.feature.byFeature(pointE, 'Chl', ['first'])
   });
 print(chart);
 ```
-![3_12](https://github.com/manessa-md/BUDEE/assets/108891611/ddfe5b6c-0fa7-44fb-a047-897e8da09abe)
+![3_12](https://github.com/manessa-md/BUDEE/assets/108891611/abafa8c8-c2c1-4e5d-bf6f-db81323f68e3)
 
+Dari Hasil validasi yang dilakukan, dapat mengetahui hasil uji akurasi dari R-square dan RMSE.]
+Dengan menggunakan Algoritma Arief2006 Diketahui Hasil R-square adalah 0.059 dan hasil RMSE adalah 0.82
 
 ```
 //3. Metrik Akurasi
@@ -212,7 +214,9 @@ print('RMSE', rmseTraining);
 
 ![3_15](https://github.com/manessa-md/BUDEE/assets/108891611/95287633-89ce-48de-8bd7-ee5d5722616b)
 
+Dari pengggunaan Algoritma CHL penelitian Hu2012, Diketahui hasil validasi data dari uji akurasi menggunakan R-square adalah 0.028 dan RMSE = 200,91.
 
+Dari kedua penggunaan Algoritma CHL pada Citra Landsat 8, Algorima Arief2006 menghasilkan data yang lebih baik dibandingkan menggunakan Algoritma Hu2012
 
 
 
