@@ -47,10 +47,10 @@ function maskS2clouds(image) {
   return image.updateMask(mask).clip(geometry).divide(10000);
 }
 var S2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
-                  .filterDate('2021-01-01', '2022-03-10')
+                  .filterDate('2022-01-01', '2023-06-10')
                   .filter(ee.Filter.bounds(geometry))
                   // Pre-filter to get less cloudy granules.
-                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',10))
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',15))
                   .map(maskS2clouds);
                   
 print(S2)
@@ -85,9 +85,9 @@ var listOfImages = S2.toList(S2.size());
 var img1 = ee.Image(listOfImages.get(0));
 var img2 = ee.Image(listOfImages.get(1));
 
-print(img2)
+print(img1)
 
-Map.addLayer(img2, visualization, 'img2');
+Map.addLayer(img1, visualization, 'img1');
 ```
 
 ![2](https://user-images.githubusercontent.com/69818715/158046578-27a6a614-0a32-403f-9dc0-40bf978145d3.JPG)
