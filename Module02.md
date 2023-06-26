@@ -97,4 +97,4 @@ Informasi image yang terpilih dapat diketahui dengan menggunakan perintah print(
 
 Gambar 19. Tampilan Informasi Tanggal Citra pada Pemilihan Data Image
 
-[Script](https://code.earthengine.google.com/a18be3676d9bb2c0af4c8a4f964aff9c)
+
