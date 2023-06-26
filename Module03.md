@@ -3,8 +3,9 @@
 Pengampilakasin algoritma Chlorophyl dapat dilakukan dengan langkah-langkah sebagai berikut:
 1. Menentukan Area Penelitian
 2. Mengimport citra yang akan digunakan
-3. Mengimplementasi Algoritma CHL pada citra
-4. Melakukan uji akurasi algoritma dengan data lapangan
+3. Mengimport Data lapangan pada GEE
+4. Mengimplementasi Algoritma CHL pada citra
+5. Melakukan uji akurasi algoritma dengan data lapangan
 
 ## 1. Menentukan Area Penelitian
 Tentukan Area yang akn dianalisis dengan menambahkan kotak area dengan cara memilih kotak warna merah :
@@ -60,6 +61,89 @@ Map.addLayer(L8col, {bands: ['B4', 'B3', 'B2'], min:0, max: 0.3}, "RGB Landsat",
 ![3_7](https://github.com/manessa-md/BUDEE/assets/108891611/918055e4-4a47-4d13-80ea-7e1ab0738d36)
 
 
-## 3. Implementasi Algoritma CHL
+## 3. Mengimport Data Lapangan 
+Mengimport data yang digunakan yang nantinya akan digunakan untuk uji akurasi
+
+![3_8](https://github.com/manessa-md/BUDEE/assets/108891611/3fce73d3-6862-45de-9455-4bae17c3ce03)
+
+```
+//Data
+var point = ee.FeatureCollection("projects/ee-amalias20l/assets/CTD2");
+print(point);
+
+//tampilkan di peta
+Map.addLayer(point,{color:"red"}, "Titik Survey", false);
+Map.centerObject(point);
+```
+## 4. Mengimpelentasi Algortima CHL
+pada module ini mencoba menggunakan dua algoritma, algoritma di peroleh dari penelitian terdahulu. 
+
+### 1. Algoritma Arief 2006
+![3_9](https://github.com/manessa-md/BUDEE/assets/108891611/0ea20e99-78f2-456e-a834-5430fcd81fbc)
+
+```
+function CHLarief2006(img){
+  var B2 = img.select("B2");
+  var B3 = img.select("B3");
+  var a = ee.Image(B2).subtract(ee.Image(B3));
+  var b = ee.Image(B2).add(ee.Image(B3));
+  var rrs = ee.Image(a).divide(ee.Image(b));
+  var CHL = ((ee.Image(rrs.multiply(17.912)).subtract(0.3343)).rename('CHLarief2006'));
+  return ee.Image(CHL.copyProperties(img, ['system:time_start']));
+}
+
+//2. Implementasi Alg Arief
+var CHLcom = CHLarief2006(L8com);
+print('Arief 2006 image composite', CHLcom);
+
+//3. Tampilan Peta
+Map.addLayer(CHLcom, {min: 1, max: 3}, "Chl Arief", false);
+```
+
+![3_10](https://github.com/manessa-md/BUDEE/assets/108891611/fc0e94c4-478b-46c8-8d0c-c93791571e07)
+
+
+### 2. Algoritma Hu 2012
+
+```
+function CI(image) {
+    /*
+      Calculates the Color Index (CI) by difference in reflectance of bands from input image
+      Formulation:
+        result = Green - [ Blue + (lambdaGreen - lambdaBlue) / (lambdaRed - lambdaBlue) * (Red - Blue) ]
+      Where :
+        Red, Green, Blue are Reflectances in the respective bands of sat image
+        lambdaRed, lambdaGreen, lambdaBlue
+          are instrument-specific wavelengths closest to 670, 555, 443 respectively of bands
+    */
+    var result = image.expression(
+        'Green - ( Blue + (lambdaGreen - lambdaBlue) / (lambdaRed - lambdaBlue) * (Red - Blue) )',
+        {
+            'Red': image.select('B4'), // *Designations for SR datasets>>
+            'lambdaRed': 670,
+            'Green': image.select('B3'),
+            'lambdaGreen': 555,
+            'Blue': image.select('B2'),
+            'lambdaBlue': 443
+        });
+      var CHL = result.rename('CHLhu');
+    return ee.Image(CHL.copyProperties(image, ['system:time_start']));
+}
+
+/// Algoritma Hu
+var CHLcom = CI(L8com);
+print('Hu et al. image composite', CHLcom);
+
+//3. Tampilan Peta
+Map.addLayer(CHLcom, {min: 1, max: 3}, "Chl hu", false);
+```
+![3_11](https://github.com/manessa-md/BUDEE/assets/108891611/0cc8aa27-923a-43cf-92fb-6b766fbb189a)
+
+
+
+
+
+
+
 
 
