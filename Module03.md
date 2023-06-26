@@ -76,9 +76,8 @@ Map.addLayer(point,{color:"red"}, "Titik Survey", false);
 Map.centerObject(point);
 ```
 ## 4. Mengimpelentasi Algortima CHL
-pada module ini mencoba menggunakan dua algoritma, algoritma di peroleh dari penelitian terdahulu. 
+pada module ini menggunakan algoritma  CHL di peroleh dari penelitian terdahulu. 
 
-### 1. Algoritma Arief 2006
 ![3_9](https://github.com/manessa-md/BUDEE/assets/108891611/0ea20e99-78f2-456e-a834-5430fcd81fbc)
 
 ```
@@ -102,8 +101,46 @@ Map.addLayer(CHLcom, {min: 1, max: 3}, "Chl Arief", false);
 
 ![3_10](https://github.com/manessa-md/BUDEE/assets/108891611/fc0e94c4-478b-46c8-8d0c-c93791571e07)
 
+## 5 Uji Akurasi Dengan Data Lapangan
+Melakukan uji akurasi dari data algoritmanya di implementasikan pada citra Landsat-8 dengan data lapangan, untuk mengetahui keakuratan data dihasilkan oleh implementasikan pada citra.
 
-### 2. Algoritma Hu 2012
+```
+//Uji Akurasi dengan data Lapangan
+//1. Ekstraksi Nilai
+var pointExtract = CHLcom.reduceRegions(point, ee.Reducer.first(), 30);
+var pointE = pointExtract.filter(ee.Filter.neq('first', null));
+print ('pointE chl', pointE);
+
+//2. Grafik 
+var chart = ui.Chart.feature.byFeature(pointE, 'Chl', ['first'])
+  .setChartType('ScatterChart')
+  .setOptions({
+    titleX: 'Measured Chl',
+    titleY: 'Predic Chl',
+    pointSize: 3,
+    trendlines: { 0: {showR2: true, visibleInLegend: true},
+                   1: {showR2: true, visibleinLegen: true}}
+  });
+print(chart);
+```
+![3_12](https://github.com/manessa-md/BUDEE/assets/108891611/ddfe5b6c-0fa7-44fb-a047-897e8da09abe)
+
+
+```
+//3. Metrik Akurasi
+var observationTraining = ee.Array(pointE.aggregate_array('Chl'));
+var predictionTraining = ee.Array(pointE.aggregate_array('first'));
+//Compute Residuals
+var residualsTraining = observationTraining. subtract(predictionTraining);
+//Compute RMSE with equation, print it
+var rmseTraining = residualsTraining.pow(2).reduce('mean', [0]).sqrt();
+print('RMSE', rmseTraining);
+```
+
+![3_13](https://github.com/manessa-md/BUDEE/assets/108891611/b82d2ab1-5970-47b8-a17a-a1514067cb52)
+
+
+### Pada modul ini juga mencoba algoritma CHL dari penelitian Hu 2012
 
 ```
 function CI(image) {
@@ -139,6 +176,41 @@ Map.addLayer(CHLcom, {min: 1, max: 3}, "Chl hu", false);
 ```
 ![3_11](https://github.com/manessa-md/BUDEE/assets/108891611/0cc8aa27-923a-43cf-92fb-6b766fbb189a)
 
+
+```
+//Uji Akurasi dengan data Lapangan
+//1. Ekstraksi Nilai
+var pointExtract = CHLcom.reduceRegions(point, ee.Reducer.first(), 30);
+var pointE = pointExtract.filter(ee.Filter.neq('first', null));
+print ('pointE chl', pointE);
+
+//2. Grafik 
+var chart = ui.Chart.feature.byFeature(pointE, 'Chl', ['first'])
+  .setChartType('ScatterChart')
+  .setOptions({
+    titleX: 'Measured Chl',
+    titleY: 'Predic Chl',
+    pointSize: 3,
+    trendlines: { 0: {showR2: true, visibleInLegend: true},
+                   1: {showR2: true, visibleinLegen: true}}
+  });
+print(chart);
+```
+![3_14](https://github.com/manessa-md/BUDEE/assets/108891611/df8b540e-5041-43dd-af74-af3c5c0cd45c)
+
+
+```
+//3. Metrik Akurasi
+var observationTraining = ee.Array(pointE.aggregate_array('Chl'));
+var predictionTraining  = ee.Array(pointE.aggregate_array('first'));
+//Compute Residuals
+var residualsTraining = observationTraining.subtract(predictionTraining);
+//Compute RMSE with equation, print it
+var rmseTraining = residualsTraining.pow(2).reduce('mean', [0]).sqrt();
+print('RMSE', rmseTraining);
+```
+
+![3_15](https://github.com/manessa-md/BUDEE/assets/108891611/95287633-89ce-48de-8bd7-ee5d5722616b)
 
 
 
