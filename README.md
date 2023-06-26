@@ -21,7 +21,7 @@ Setelah mengikuti pelatihan ini peserta pelatihan diharapkan mampu:
 2. Mengunakan JavaScript untuk menulis skrip di Antarmuka Editor Kode Google Earth Engine
 3. Memahami skrip sederhana di Google Earth Engine
 4. Mengakses data raster penginderaan jauh dari Google Earth Engine
-5. Menerapkan algoritme chlorofil-a ke data Sentinel-2, Landsat-9 di Google Earth Engine
+5. Menerapkan algoritme chlorofil-a ke data Sentinel-2, Landsat-8 di Google Earth Engine
 6. Memvisualisasikan plot deret waktu di Google Earth Engine
 7. Membuat infografis spasial
 -------------
