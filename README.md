@@ -33,6 +33,8 @@ Setelah mengikuti pelatihan ini peserta pelatihan diharapkan mampu:
 1. [Histrorical Upwelling](https://github.com/manessa-md/BUDEE/blob/main/Materi/MDMM-Pemantauan%20Historical%20Upwelling%20Menggunakan%20Data%20Penginderaan%20Jauh.pdf)
 2. [Pengenalan GEE](https://github.com/manessa-md/BUDEE/blob/main/Materi/MDMM-Pemantauan%20Historical%20Upwelling%20Menggunakan%20Data%20Penginderaan%20Jauh.pdf)
 
+**Data dapat diakses pada link berikut:**
+[Data]()
 
 **Module Pelatihan dapat diakses pada link berikut:**
 
