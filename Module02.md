@@ -1,5 +1,5 @@
 # PANDUAN DASAR GOOGLE EARTH ENGINE
-Module 2 Dasar Koding
+Module 3 Dasar Koding
 --------------
 
 ## 2a Mengenal Kombinasi Band dan Visualisasi Citra Sentinel-2 menggunakan Google Earth Engine 
