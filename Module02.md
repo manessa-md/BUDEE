@@ -55,8 +55,7 @@ var S2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
                   
 print(S2)
 ```
-
-<img width="960" alt="Mod2-S2-04" src="https://user-images.githubusercontent.com/69818715/158045788-dbe83ba5-d384-4390-af9a-07c0882fa96e.png">
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/1d5f37b0-8e7a-4b46-bbd7-05dc17c8cb18)
 Gambar 16. Tampilan Coding Load dan Filtering Citra Satelit
 
 ### Visualisasi Citra Sentinel-2
@@ -72,8 +71,7 @@ var visualization = {
 
 Map.addLayer(S2.first(), visualization, 'RGB');
 ```
-
-<img width="960" alt="Mod2-S2-05" src="https://user-images.githubusercontent.com/69818715/158046321-e8326070-d054-46bc-9505-95de5cf49336.png">
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/f87e58b1-d216-418b-91b1-fe907bec676a)
 Gambar 17. Tampilan Visualisasi Citra Sentinel-2
 
 ### Memilih Visualisasi Data Image dari ImageCollection
@@ -89,9 +87,14 @@ print(img1)
 
 Map.addLayer(img1, visualization, 'img1');
 ```
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/ef78434f-8e5a-4f36-aa53-028a16edaa6d)
 
-![2](https://user-images.githubusercontent.com/69818715/158046578-27a6a614-0a32-403f-9dc0-40bf978145d3.JPG)
 Gambar 18. Tampilan Hasil Pemilihan Data Image
 
+Informasi image yang terpilih dapat diketahui dengan menggunakan perintah print(). Kemudian, informasi mengenai band dan tanggal citra akan muncul pada box console.
+
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/3180bb61-6141-41fa-85d8-c40afdd8ae9e)
+
+Gambar 19. Tampilan Informasi Tanggal Citra pada Pemilihan Data Image
 
 [Script](https://code.earthengine.google.com/a18be3676d9bb2c0af4c8a4f964aff9c)
