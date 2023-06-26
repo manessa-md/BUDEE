@@ -39,7 +39,8 @@ Setelah mengikuti pelatihan ini peserta pelatihan diharapkan mampu:
 1. [Module 1: Dasar Coding Java Script dan Pengenalan aplikasi Google Earth Engine](https://github.com/manessa-md/BUDEE/blob/main/Module01.md)
 2. [Module 2: Dasar Coding Google Earth Engine](https://github.com/manessa-md/BUDEE/blob/main/Materi/Beginner's%20Cookbook.md)
 3. [Module 3: Sentinel-2](https://github.com/manessa-md/BUDEE/blob/main/Module02.md)
-4. [Module 4: Landsat-8](https://github.com/manessa-md/BUDEE/blob/main/Module03.md)
-5. [Module 5: Landsat-8 timeseries](https://github.com/manessa-md/BUDEE/blob/main/Module04.md)
-6. [Module 6: GCOM](https://github.com/manessa-md/BUDEE/blob/main/Module05.md)
-7. [Module 7: MODIS](https://github.com/manessa-md/BUDEE/blob/main/Module06.md)
+4. [Module 4: GCOM](https://github.com/manessa-md/BUDEE/blob/main/Module05.md)
+5. [Module 5: MODIS](https://github.com/manessa-md/BUDEE/blob/main/Module06.md)
+6. [Module 6: Landsat-8](https://github.com/manessa-md/BUDEE/blob/main/Module03.md)
+7. [Module 7: Landsat-8 timeseries](https://github.com/manessa-md/BUDEE/blob/main/Module04.md)
+
