@@ -1,6 +1,6 @@
 # TimeSeries Dengan Citra Modis
 ---
-Data Timeseries merupakan kumpulan hasil data pada interval waktu tertentu. Data Timeseries dapat dilakukan dengan menggunakan citra Modis. Dengan langkah-langkah sebagai berikut:
+MODIS (Moderate Resolution Imaging Spectroradiometer) merupakan instrumen yang beroperasi pada satelit Terra. Satelit ini memiliki lebar sapuan sebesar 2330 km dan memotret seluruh permukaan bumi dalam satu atau dua hari. Data Timeseries merupakan kumpulan hasil data pada interval waktu tertentu. Data Timeseries dapat dilakukan dengan menggunakan citra Modis. Dengan langkah-langkah sebagai berikut:
 
 
 ## 1. Memilih Citra Modis
