@@ -140,7 +140,7 @@ print('RMSE', rmseTraining);
 ![3_13](https://github.com/manessa-md/BUDEE/assets/108891611/b82d2ab1-5970-47b8-a17a-a1514067cb52)
 
 
-### Pada modul ini juga mencoba algoritma CHL dari penelitian Hu 2012
+## Pada modul ini juga mencoba algoritma CHL dari penelitian Hu 2012
 
 ```
 function CI(image) {
