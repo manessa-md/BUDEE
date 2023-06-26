@@ -171,6 +171,8 @@ Map.addLayer(CHLcol.mean(), {min: 1, max: 3}, "Chl", false);
 
 
 Kemudian dibuat grafik Timeseries dari Implementasi Algoritma Hu 2012 dengan Citra Landsat-8
+
+
 ```
 
 //4. Grafik 
@@ -197,6 +199,8 @@ var chart =
         });
 print(chart);
 ```
+
+
 ![4_3](https://github.com/manessa-md/BUDEE/assets/108891611/7fbe2279-97c7-4780-bbaa-882710f2d5a3)
 
 
