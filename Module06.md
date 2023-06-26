@@ -85,7 +85,8 @@ Sehingga Perlu Adanya Filtering Data
 ## 7. FIltering Data
 ### Hal yang harus dilakukan telebih dahulu yaitu membuat area penelitian
 
-![3_1](https://github.com/manessa-md/BUDEE/assets/108891611/932d6327-41d9-45ec-845b-122beb39245b)
+![3_6](https://github.com/manessa-md/BUDEE/assets/108891611/f621c364-bd02-4b1e-879e-6ab8b730e2e9)
+
 
 Hal tersebut akan memudahkan dalam mengclip data citra
 
