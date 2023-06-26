@@ -1,6 +1,5 @@
 # TimeSeries CHL Dengan Citra Landsat-8
- Timeseries data merupakan data yang terekam pada interval tertentu. Pada pengaplikasiannya di Google Earth Engine (GEE) Tanggal Citra yang digunakan dapat di atur.
- Berikut langkah timeseries CHL dengan Landsa-8:
+Timeseries data merupakan data yang terekam pada interval tertentu. Pada pengaplikasiannya di Google Earth Engine (GEE) Tanggal Citra yang digunakan dapat di atur. Berikut langkah timeseries CHL dengan Landsat-8:
 
 ### 1. Membuat Area Penelitian
 Pada tahap ini dapat membuat area penelitian dengan mengklik tanda di kotak merah untuk menambahkan geometry
