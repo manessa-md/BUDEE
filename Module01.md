@@ -73,27 +73,27 @@ Sedangkan task merupakan bagian untuk melakukan dan melihat upload data hasil pe
 ## 5. Geometry tools
 Geometry tools merupakan alat dalam google earth engine yang memiliki fungsi untuk membuat bentuk bentuk geometri dengan nilai koordinat di muka peta. Bentuk geometri yang dapat dibuat berupa titik, garis dan polygon. Langkah pembuatan objek geometry dilakukan dengan memilih objek yang akan dibuat kemudian langsung membuat objek dalam peta. Berikut merupakan contoh pembuatan geometry titik, garis, polygon dan rectangle.
 
-![eeInterface](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/db8a066c32233a6f4d503be656d58c6916cbb276/Image/eeInterface/Point.png)
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/18556869-3048-4baa-aba0-a20a954beeb8)
 
 **Gambar 10. Pembuatan Geometry Point Google Earth Engine**
 
-![eeInterface](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/db8a066c32233a6f4d503be656d58c6916cbb276/Image/eeInterface/Line.png)
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/4e9e8321-9e0e-42e3-a07e-1794e4233322)
 
 **Gambar 11. Pembuatan Geometry Garis Google Earth Engine**
 
-![eeInterface](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/db8a066c32233a6f4d503be656d58c6916cbb276/Image/eeInterface/Polygon.png)
-![eeInterface](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/db8a066c32233a6f4d503be656d58c6916cbb276/Image/eeInterface/Rectangle.png)
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/be4f7a21-d6a5-446a-86ae-2708a76a1ebe)
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/bb703f44-1176-4a8e-ab3b-9586e77ed658)
 
 **Gambar 12. Pembuatan Geometry Polygon dan Rectangle Google Earth Engine**
 
 ## 6. Muka Peta
 Merupakan bagian utama dimana hasil dari perintah _coding_ dapat ditampilkan melalui proses visualiasi. Pada bagian muka peta juga terdapat layer dan jenis peta dasar. Layer merupakan lapisan peta yang ditampilkan selain peta dasar sedangkan peta dasar yang disediakan google terdapat 2 jenis yaitu peta satelit dan garis.
 
-![eeInterface](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/4e3cfc96e2fa5b007551a240752ad58fc702402e/Image/eeInterface/Citragaris.png)
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/ff97a149-1bbd-49a1-962c-f2408e65f4af)
 
 **Gambar 13. Peta Garis Google Earth Engine**
 
-![eeInterface](https://github.com/manessa-md/UNODC-PAPUA-EE-2022.github.io/blob/4e3cfc96e2fa5b007551a240752ad58fc702402e/Image/eeInterface/Citrasatelit.png)
+![image](https://github.com/manessa-md/BUDEE/assets/108908781/7d100fcc-dbf7-40b7-9c41-715bfcf7a3be)
 
 **Gambar 14. Peta Satelit Google Earth Engine**
 
