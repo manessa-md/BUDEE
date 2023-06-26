@@ -1,6 +1,9 @@
 # Menerapkan Algoritma Chlorophyll pada citra  Landsat 8
 ---
-Pengampilakasin algoritma Chlorophyl dapat dilakukan dengan langkah-langkah sebagai berikut:
+Citra Landsat-8 Merupakan satelite observasi bumi milik Amerika yang diluncurkan pada tanggal 11 Februari 2013.  Landsat-8  memiliki dua sensor yaitu sensor Operational Land Imager (OLI) dan Thermal Infrared Sensor (TIRS). Kedua sensor ini menyediakan resolusi spasial 30 meter (visible, NIR, SWIR), 100 meter (thermal), dan 15 meter (pankromatik).
+
+
+Pada modul ini akan menjelaskan mengenai pengampilakasin algoritma Chlorophyl pada Citra Landsat-8 yang dapat dilakukan dengan langkah-langkah sebagai berikut:
 1. Menentukan Area Penelitian
 2. Mengimport citra yang akan digunakan
 3. Mengimport Data lapangan pada GEE
