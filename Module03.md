@@ -1,40 +1,53 @@
-# Menerapkan Algoritma Chlorophyl pada Landsat 8
+# Menerapkan Algoritma Chlorophyll pada citra  Landsat 8
 ---
+Pengampilakasin algoritma Chlorophyl dapat dilakukan dengan langkah-langkah sebagai berikut:
+1. Mengimport citra yang akan digunakan
+2. Menentukan Area Penelitian
+3. Mengimplementasi Algoritma CHL pada citra
+4. Melakukan uji akurasi algoritma dengan data lapangan
 
-## Mengenal Kombinasi Band dan Visualisasi Citra Landsat-8 menggunakan Google Earth Engine 
-- Memilih Citra
-- Mengenal Informasi Citra Landsat 8
-- Menginput Citra Landsat 8
-- Load dan Filtering Citra Landsat 8
-- Visualisasi RGB Citra Landsat 8
-- Memilih data dari ImageCollection
-- Mengimplementasi Algoritma Chl
-- Uji akurasi dengan data lapangan
+## 1. Mengimport Citra Yang Akan Digunakan
+Citra yang digunakan pada module ini adalah Citra Landsat 8.
+Pengimportan citra sentinel dapat dikukan dengan mencari pada tabel pencarian dengan memasukan _keyword_ nama citra satelit "Landsat 8".
 
-## Memilih Citra
-Citra yang ingin digunakan dapat dipilih dengan  mencari pada tabel pencarian dengan memasukan _keyword_ nama citra satelit "Landsat-8".
+Pada module ini menggunakan Citra Landsat 8 Level 2, Collection 2, Tier 2
 
-![3_1](https://github.com/manessa-md/BUDEE/assets/108891611/9609878d-3e85-46d4-97da-803ce5e0e52c)
+![3_1](https://github.com/manessa-md/BUDEE/assets/108891611/b07d0e81-7aab-4c3e-ba83-719f053ffc0f)
 
-## Mengenal Informasi Citra Landsat 8 yang digunakan
-pada modul ini menggunakan citra Landsat 8 Level 2, Collection 2, Tier 2
-untuk mengetahui informais pada citra Landsat 8 dapat dengan cara :
+```
+function maskL8sr(image) {
+  // Bits 3 and 5 are cloud shadow and cloud, respectively
+  var cloudShadowBitMask = (1 << 3); // 1000 in base 2
+  var cloudsBitMask = (1 << 5); // 100000 in base 2
 
-#### 1. Mengklik citra yang akan digunakan
-![3_2](https://github.com/manessa-md/BUDEE/assets/108891611/7f24856d-a675-47a5-a800-c5323fb21cf6)
+  // Get the pixel QA band
+  var qa = image.select('QA_PIXEL');
 
-#### 2. Setelah di pilih, akan menampilkan informasi citra 
+  // Both flags should be set to zero, indicating clear conditions
+  var mask = qa
+    .bitwiseAnd(cloudShadowBitMask).eq(0)
+    .and(qa.bitwiseAnd(cloudsBitMask).eq(0));
 
-informasi yang di tampilkan yaitu berupa
-- Deskripsi Citra Landsat 8 Level 2, Collection 2, Tier 2
+  // Mask image with clouds and shadows
+  return image.updateMask(mask);
+}
 
- ![3_3](https://github.com/manessa-md/BUDEE/assets/108891611/ee716013-7981-467e-8e52-7a302327fa4c)
+var clip_rmnp = function(image) {
+  return image.clip(rmnp_boundary);
+};
 
-- Informasi Band pada citra
+//Data Landsat-8
+var L8col = ee.ImageCollection("LANDSAT/LC08/C02/T2_L2")
+              .filterDate('2022-07-01', '2022-09-30')
+              .map(maskL8sr)
+              .select('SR_B[1-7]')
+              .map(function(image){return image.rename(['B1', 'B2', 'B3', 'B4','B5','B6','B7']).clip(AOI)});
+var L8com = L8col.median();
+Map.addLayer(L8col, {bands: ['B4', 'B3', 'B2'], min:0, max: 0.3}, "RGB Landsat", false);
+```
 
-![3_4](https://github.com/manessa-md/BUDEE/assets/108891611/50086730-fcca-498c-bbf4-bead44c2429a)
 
-- Image Properties Citra
 
- ![3_5](https://github.com/manessa-md/BUDEE/assets/108891611/0ef1e746-ddd8-4965-8cec-315cdee2bcf9)
- 
+## 2. Menentukan Area Penelitian
+
+
