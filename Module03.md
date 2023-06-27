@@ -71,7 +71,7 @@ Mengimport data yang digunakan yang nantinya akan digunakan untuk uji akurasi
 
 ```
 //Data
-var point = ee.FeatureCollection("projects/ee-amalias20l/assets/CTD2");
+var point = ee.FeatureCollection("projects/ee-budeetraining/assets/Survey_point"); // ganti dengan link dari asset masing-masing
 print(point);
 
 //tampilkan di peta
@@ -148,6 +148,7 @@ print('RMSE', rmseTraining);
 ## Pada modul ini juga mencoba algoritma CHL dari penelitian Hu 2012
 
 ```
+// CI Algorithm, (Hu et al. 2012)
 function CI(image) {
     /*
       Calculates the Color Index (CI) by difference in reflectance of bands from input image
@@ -168,9 +169,13 @@ function CI(image) {
             'Blue': image.select('B2'),
             'lambdaBlue': 443
         });
-      var CHL = result.rename('CHLhu');
+        
+    var CIp = result.multiply(230.47).subtract(0.4287);
+    var CHL = ee.Image(10).pow(CIp).rename('CHLhu'); 
+   
     return ee.Image(CHL.copyProperties(image, ['system:time_start']));
 }
+
 
 /// Algoritma Hu
 var CHLcom = CI(L8com);
