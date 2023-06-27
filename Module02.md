@@ -2,7 +2,7 @@
 Module 3 Dasar Koding
 --------------
 
-## 2a Mengenal Kombinasi Band dan Visualisasi Citra Sentinel-2 menggunakan Google Earth Engine 
+## Mengenal Kombinasi Band dan Visualisasi Citra Sentinel-2 menggunakan Google Earth Engine 
 Konten Panduan
 - Memilih Citra
 - Memahami Informasi Citra Sentinel-2
