@@ -18,7 +18,7 @@ Tentukan Area yang akn dianalisis dengan menambahkan kotak area dengan cara memi
 Kemudian beri kode geometry yang dibuat untuk memudahkan script code berikutnya :
 ```
 //Area Penelitian
-var AOI = geometry;
+var AOI = ee.FeatureCollection("projects/ee-budeetraining/assets/Banggai_area"); //ganti sesuai nama di script anda
 ```
 
 ## 2. Mengimport Citra Yang Akan Digunakan
