@@ -9,7 +9,7 @@ Pada tahap ini dapat membuat area penelitian dengan mengklik tanda di kotak mera
 Area penelitian diberi kode agar memudahkan code script selanjutnya 
 ```
 //Area Penelitian
-var AOI = geometry;
+var AOI = ee.FeatureCollection("projects/ee-budeetraining/assets/Banggai_area"); //ganti sesuai nama di script anda
 ```
 
 ### 2. Mengimport Citra Landsat 8
@@ -60,7 +60,7 @@ Map.addLayer(L8col, {bands: ['SR_B4', 'SR_B3', 'SR_B2'], min:0, max: 0.3}, "RGB 
 Dilakukan import data lapangan 
 ```
 //Data
-var point = ee.FeatureCollection("projects/ee-amalias20l/assets/CTD2");
+var point = ee.FeatureCollection("projects/ee-budeetraining/assets/Survey_point"); // ganti dengan link dari asset masing-masing
 print(point);
 
 //tampilkan di peta
@@ -148,14 +148,17 @@ function CI(image) {
     var result = image.expression(
         'Green - ( Blue + (lambdaGreen - lambdaBlue) / (lambdaRed - lambdaBlue) * (Red - Blue) )',
         {
-            'Red': image.select('SR_B4'), // *Designations for SR datasets>>
+            'Red': image.select('B4'), // *Designations for SR datasets>>
             'lambdaRed': 670,
-            'Green': image.select('SR_B3'),
+            'Green': image.select('B3'),
             'lambdaGreen': 555,
-            'Blue': image.select('SR_B2'),
+            'Blue': image.select('B2'),
             'lambdaBlue': 443
         });
-      var CHL = result.rename('CHLhu')  
+        
+    var CIp = result.multiply(230.47).subtract(0.4287);
+    var CHL = ee.Image(10).pow(CIp).rename('CHLhu'); 
+   
     return ee.Image(CHL.copyProperties(image, ['system:time_start']));
 }
 
