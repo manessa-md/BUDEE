@@ -48,10 +48,6 @@ function maskL8sr(image) {
   return image.updateMask(mask);
 }
 
-var clip_rmnp = function(image) {
-  return image.clip(rmnp_boundary);
-};
-
 //Data Landsat-8
 var L8col = ee.ImageCollection("LANDSAT/LC08/C02/T2_L2")
               .filterDate('2022-07-01', '2022-09-30')
