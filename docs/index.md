@@ -40,17 +40,3 @@ Setelah mengikuti pelatihan ini, peserta diharapkan mampu:
 📌 **Data Pelatihan** dapat diakses di sini:  
 📂 [Data & Shapefiles](https://github.com/manessa-md/BUDEE/tree/main/ShapeFile)
 
----
-
-## **📘 Modul Pelatihan**
-📌 **Modul pelatihan dapat diakses di link berikut:**
-
-1. 📜 [Module 1: Dasar Coding JavaScript & Pengenalan Google Earth Engine](module1.md)
-2. 📜 [Module 2: Dasar Coding Google Earth Engine](module2.md)
-3. 📜 [Module 3: Sentinel-2](module3.md)
-4. 📜 [Module 4: GCOM](module4.md)
-5. 📜 [Module 5: MODIS](module5.md)
-6. 📜 [Module 6: Landsat-8](module6.md)
-7. 📜 [Module 7: Landsat-8 Timeseries](module7.md)
-
----
