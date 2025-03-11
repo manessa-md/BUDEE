@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Module 2: Dasar Coding Google Earth Engine"
+permalink: /BUDEE/module2.html
 ---
 
 {% include _sidebar.md %}
