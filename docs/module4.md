@@ -119,7 +119,7 @@ Gambar berikut menunjukkan hasil analisis **time series** dari **GCOM-C**:
 
 ---
 ## **Tugas Modifikasi Kode**
-1. **Modifikasi area penelitian**: Pilih area lain selain "Flores" untuk melihat perbedaan pola distribusi klorofil-a.
+1. **Modifikasi area penelitian**: Pilih area lain selain "Bangai" untuk melihat perbedaan pola distribusi klorofil-a.
 2. **Ubah rentang waktu**: Coba gunakan rentang waktu lebih panjang atau lebih pendek untuk melihat variasi konsentrasi klorofil-a.
 3. **Eksperimen dengan palet warna**: Modifikasi palet warna untuk meningkatkan interpretasi visualisasi data.
 
