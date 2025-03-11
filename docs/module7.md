@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Module 7: LANDSAT TIMESERIES"
+---
+
+{% include _sidebar.md %}
+
 # TimeSeries CHL dengan Citra Landsat-8
 
 ## 1. Pendahuluan
