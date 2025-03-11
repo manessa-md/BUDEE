@@ -1,51 +1,47 @@
-# Global Change Observation Mission
- Global Change Observation Mission (GCOM) merupakan project obeservasi global jangka panjang terhadap perubahan lingkungan bumi yang dikeluarkan oleh JAXA.
- GCOM terdiri dari dua satelit yaitu GCOM-W and GCOM-C. Satelit GCOM-W memiliki misi untuk mengobservasi perubahan sirkulasi perairan. 
- Sedangkan, Satelit GCOM-C memiliki misi untuk mengobservasi perubahan iklim melalui Second Generation Global Imager (SGLI).
- SGLI melakukan pengukuran permukaan dan atmosfer yang terkait dengan siklus karbon dan radiasi seperti awan, aeroso, ocean color, vegetasi, salju dan es.
- 
-### 1. Membuat Area Penelitian
- Selain menggunakan tools geometry, area penelitian dapat dibuat dengan mengimport shapefile atau mengakses asset shapefile.
- 
+# **Global Change Observation Mission (GCOM)**
+
+## **Pendahuluan**
+Global Change Observation Mission (GCOM) merupakan proyek observasi global jangka panjang yang dikembangkan oleh **Japan Aerospace Exploration Agency (JAXA)** untuk memantau perubahan lingkungan Bumi. Misi ini bertujuan untuk mengumpulkan data yang dapat digunakan dalam analisis perubahan iklim, sirkulasi lautan, dan ekosistem global.
+
+GCOM terdiri dari dua satelit utama:
+1. **GCOM-W (Water)**: Memfokuskan pada observasi perubahan sirkulasi perairan, termasuk salinitas dan suhu laut.
+2. **GCOM-C (Climate)**: Mengamati perubahan iklim melalui **Second Generation Global Imager (SGLI)**, yang melakukan pengukuran atmosfer dan permukaan terkait siklus karbon dan radiasi, seperti awan, aerosol, warna laut, vegetasi, salju, dan es.
+
+## **1. Membuat Area Penelitian**
+Dalam **Google Earth Engine (GEE)**, area penelitian dapat ditentukan dengan beberapa cara:
+- Menggunakan **tools geometry** secara manual.
+- Mengimpor **shapefile** dari aset pengguna.
+- Mengakses **shapefile** yang tersedia dalam **Google Earth Engine Assets**.
+
+Gambar berikut menunjukkan bagaimana cara mengimpor **shapefile** area penelitian:
+
 ![image](https://github.com/manessa-md/BUDEE/assets/108908781/694e4287-0e0c-4036-935e-220e1127e2f3)
-Gambar 1. Mengimport asset shapefile area penelitian pada kolom Imports
+*Gambar 1. Mengimport asset shapefile area penelitian pada kolom Imports*
 
- Jika shapefile area penelitian terdiri dari beberapa area, maka area penelitian dapat dipilih sesuai dengan yang dibutuhkan dengan menggunakan code .filter()
-
+Jika shapefile mencakup beberapa area, kita dapat memilih lokasi spesifik menggunakan metode `.filter()`. Contoh berikut menunjukkan bagaimana kita hanya memilih area "Flores":
+```javascript
+var poi = zone.filter(ee.Filter.eq('Zona', 'Flores'));
 ```
- var poi = zone.filter(ee.Filter.eq('Zona', 'Flores'));
-```
 
-### 2. Membuka data Klorofil-a pada GCOM-C
- GCOM-C menyediakan produk konsentrasi klorofil-a Level 3 (L3) melalui pigmen fotosintetik pada fitoplaknton di lapisan permukaan laut.
+## **2. Membuka Data Klorofil-a pada GCOM-C**
+**Klorofil-a** adalah pigmen fotosintetik utama dalam fitoplankton yang dapat digunakan sebagai indikator produktivitas primer di lautan. **GCOM-C menyediakan data Level 3 (L3)** untuk konsentrasi **Klorofil-a**, yang dikalkulasi berdasarkan reflektansi multispektral.
 
- ![image](https://github.com/manessa-md/BUDEE/assets/108908781/a3ea8ea4-7563-44b4-b0bd-b108c4390860)
- Gambar 2. Produk Klorofil-a dari Satelit GCOM-C
-
- Dalam membuka data klorofil-a, diperlukan beberapa pengaturan seperti pengaturan tanggal menggunakan .filterDate() dan mem-filter data satelit menggunakan .filter(ee.Filter.eq('SATELLITE_DIRECTION', 'D'), dimana 'D' menampilkan data daytime. Berikut merupakan code untuk membuka data klorofil-a
-
- ```
-// Data Penginderaan Jauh Chlorophyll-a
-
-/// GCOM-C/SGLI L3 Chlorophyll-a Concentration (V1) 
-
-//// Membuka data menggunakan script berikut
-
+### **Langkah-Langkah Membuka Data Klorofil-a di GEE**
+#### **1. Mengakses Data dari Google Earth Engine**
+Kode berikut digunakan untuk mengakses dataset **GCOM-C/SGLI L3 Chlorophyll-a Concentration (V1)**:
+```javascript
 var dataset = ee.ImageCollection('JAXA/GCOM-C/L3/OCEAN/CHLA/V1')
                 .filterDate('2020-01-01', '2020-02-01')
-                // filter to daytime data only
-                .filter(ee.Filter.eq('SATELLITE_DIRECTION', 'D'));
+                .filter(ee.Filter.eq('SATELLITE_DIRECTION', 'D')); // Hanya daytime data
 ```
-Kemudian, dibutuhkan pengaturan kalibrasi slope coefficient sebagai berikut:
-
-```
+#### **2. Kalibrasi Data**
+Dataset ini memerlukan kalibrasi dengan **slope coefficient** sebagai berikut:
+```javascript
 var image = dataset.mean().multiply(0.0016).log10();
 ```
-
-Tahapan terakhir ialah visualisasi, berikut merupakan script visualiasi:
-
-```
-// Setting Visualisasi
+#### **3. Visualisasi Data**
+Setelah data dikalibrasi, kita bisa menampilkannya dengan menggunakan parameter visualisasi berikut:
+```javascript
 var vis = {
   bands: ['CHLA_AVE'],
   min: -2,
@@ -57,71 +53,51 @@ var vis = {
   ]
 };
 
-// Menampilkan image pada Map
 Map.addLayer(image, vis, 'Chlorophyll-a concentration');
 Map.setCenter(123.8547, -0.8266, 5);
 ```
-
-### 3. Hasil Konsentrasi Klorofil-a oleh Satelit GCOM-C
-
+Gambar berikut menunjukkan hasil visualisasi **Klorofil-a** oleh **GCOM-C**:
 ![image](https://github.com/manessa-md/BUDEE/assets/108908781/b89ad12a-c069-4e1a-9af7-15596df74e1e)
-Gambar 3. Hasil Konsentrasi Klorofil-a pada Wilayah Indonesia oleh Satelit GCOM-C
+*Gambar 2. Hasil Konsentrasi Klorofil-a di Wilayah Indonesia oleh Satelit GCOM-C*
 
-# Time Series Global Change Observation Mission
-Pembuatan time series dengan menggunakan data Global Change Observation Mission (GCOM) ialah dengan menggabungkan beberapa citra dengan rentang waktu yang berbeda.
-Melalui time series, kita dapat mengetahui informasi variasi dari suatu parameter.
+## **3. Time Series Global Change Observation Mission**
+Analisis **time series** memungkinkan kita untuk mengamati tren perubahan dalam data klorofil-a selama periode tertentu.
 
-### 1. Memilih Beberapa Citra GCOM-C Produk Klorofil-a dengan Perbedaan Rentang Waktu 
-Pemilihan rentang waktu harus disesuaikan dengan ketersediaan data Citra Satelit. Pada saat ini, GCOM-C menyediakan produk klorofil-a terdiri dari tiga version yaitu 'JAXA/GCOM-C/L3/OCEAN/CHLA/V1' ; 'JAXA/GCOM-C/L3/OCEAN/CHLA/V2'; dan 'JAXA/GCOM-C/L3/OCEAN/CHLA/V3'
+### **1. Memilih Beberapa Citra GCOM-C**
+Dataset **GCOM-C** menyediakan tiga versi produk klorofil-a:
+- **V1**: 2018-01-01 hingga 2020-06-28
+- **V2**: 2020-06-28 hingga 2021-11-28
+- **V3**: 2021-11-29 hingga 2023-06-22
 
-![image](https://github.com/manessa-md/BUDEE/assets/108908781/5b3b5901-1424-4183-88c7-170f6233398f)
-Gambar 4. Ketersediaan data dalam rentang waktu pada setiap versi produk klorofil-a GCOM-C
-
-Pemilihan rentang waktu pada setiap versi produk yang berbeda diusahakan tidak beririsan. Sedangkan, pengaturan parameter dapat dilakukan seperti tahapan sebelumnya. Berikut merupakan code pemilihan beberapa citra:
-
-```
-// Data Penginderaan Jauh Chlorophyll-a
-
-/// GCOM-C/SGLI L3 Chlorophyll-a Concentration (V1) 
-
-//// Membuka data menggunakan script berikut
-
-
+Kode berikut mengimpor ketiga dataset tersebut:
+```javascript
 var v1 = ee.ImageCollection('JAXA/GCOM-C/L3/OCEAN/CHLA/V1')
                 .filterDate('2018-01-01', '2020-06-28')
-                // filter to daytime data only
                 .filter(ee.Filter.eq('SATELLITE_DIRECTION', 'D'));
                 
 var v2 = ee.ImageCollection('JAXA/GCOM-C/L3/OCEAN/CHLA/V2')
                 .filterDate('2020-06-28', '2021-11-28')
-                // filter to daytime data only
                 .filter(ee.Filter.eq('SATELLITE_DIRECTION', 'D'));
                 
 var v3 = ee.ImageCollection('JAXA/GCOM-C/L3/OCEAN/CHLA/V3')
                 .filterDate('2021-11-29', '2023-06-22')
-                // filter to daytime data only
                 .filter(ee.Filter.eq('SATELLITE_DIRECTION', 'D'));
 ```
-### 2. Pengaturan Kalibrasi Slope Coefficient
-Berikut merupakan kalibrasi slope coefficient:
 
-```
+### **2. Kalibrasi Data**
+```javascript
 function calibrate(image){
   return image.multiply(0.0016).copyProperties(image, ['system:time_start']);
 }
 ```
-### 3. Penggabungan Beberapa Citra yang Telah Terpilih
-Pembuatan timeseries dilakukan dengan menggabungkan beberapa citra dengan rentang waktu yang berbeda. Codenya ialah sebagai berikut:
 
-```
+### **3. Menggabungkan Data untuk Analisis Time Series**
+```javascript
 var gcom = v1.merge(v2).merge(v3).select(['CHLA_AVE']).map(calibrate);
 ```
 
-### 4. Visualisasi Timeseries Citra
-Berikut merupakan code untuk visualisasi citra:
-
-```
-// Setting Visualisasi
+### **4. Visualisasi Time Series**
+```javascript
 var vis = {
   bands: ['CHLA_AVE'],
   min: 0,
@@ -133,11 +109,19 @@ var vis = {
   ]
 };
 
-// Menampilkan image pada Map
 Map.addLayer(gcom, vis, 'Chlorophyll-a concentration');
 Map.setCenter(123.8547, -0.8266, 5);
 ```
-### 5. Hasil Timeseries Konsentrasi Klorofil-a pada Citra GCOM-C
 
+Gambar berikut menunjukkan hasil analisis **time series** dari **GCOM-C**:
 ![image](https://github.com/manessa-md/BUDEE/assets/108908781/c8a10d17-46cb-46a3-89ec-fc566fd94deb)
-Gambar 5. Hasil Timeseries Konsentrasi Klorofil-a pada Wilayah Indonesia oleh Satelit GCOM-C
+*Gambar 3. Time Series Konsentrasi Klorofil-a di Wilayah Indonesia oleh GCOM-C*
+
+---
+## **Tugas Modifikasi Kode**
+1. **Modifikasi area penelitian**: Pilih area lain selain "Flores" untuk melihat perbedaan pola distribusi klorofil-a.
+2. **Ubah rentang waktu**: Coba gunakan rentang waktu lebih panjang atau lebih pendek untuk melihat variasi konsentrasi klorofil-a.
+3. **Eksperimen dengan palet warna**: Modifikasi palet warna untuk meningkatkan interpretasi visualisasi data.
+
+Setelah melakukan modifikasi, analisis bagaimana perubahan-perubahan tersebut mempengaruhi hasil visualisasi dan kesimpulan yang dapat diambil.
+
