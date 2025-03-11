@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Module 3: Dasar Coding Google Earth Engine"
+---
+
+{% include _sidebar.md %}
+
 # PANDUAN DASAR GOOGLE EARTH ENGINE
 Dasar Koding
 --------------
