@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Module 6: LANDSAT"
+---
+
+{% include _sidebar.md %}
+
 # **Menerapkan Algoritma Chlorophyll pada Citra Landsat 8**
 
 ## **Pendahuluan**
