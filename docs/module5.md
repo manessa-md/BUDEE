@@ -1,32 +1,29 @@
-# TimeSeries Dengan Citra Modis
----
-MODIS (Moderate Resolution Imaging Spectroradiometer) merupakan instrumen yang beroperasi pada satelit Terra. Satelit ini memiliki lebar sapuan sebesar 2330 km dan memotret seluruh permukaan bumi dalam satu atau dua hari. Data Timeseries merupakan kumpulan hasil data pada interval waktu tertentu. Data Timeseries dapat dilakukan dengan menggunakan citra Modis. Dengan langkah-langkah sebagai berikut:
+# Analisis Time Series dengan Citra MODIS
 
+## 1. Pendahuluan
+MODIS (Moderate Resolution Imaging Spectroradiometer) adalah instrumen yang beroperasi pada satelit Terra dengan lebar sapuan sebesar 2330 km. MODIS mampu menangkap citra seluruh permukaan bumi dalam satu atau dua hari, menjadikannya sangat berguna untuk pemantauan lingkungan berbasis time series.
 
-## 1. Memilih Citra Modis
-Pada module ini citra modis yang digunakan "Ocean Color SMI: Standard Mapped Image MODIS Terra Data"
+Analisis time series dilakukan untuk mengamati perubahan parameter lingkungan dalam rentang waktu tertentu. Dalam modul ini, kita akan menggunakan citra MODIS untuk memantau konsentrasi Chlorophyll-a (Chlor-a), yang menjadi indikator utama produktivitas fitoplankton di lautan.
 
-Pemilihan data citra dapat dilakukan dengan cara memasukan keyword nama citra satelit "Modis Terra OceanColour"
+## 2. Pemilihan Citra MODIS
+Citra yang digunakan dalam modul ini adalah "Ocean Color SMI: Standard Mapped Image MODIS Terra Data". Pemilihan data dilakukan dengan memasukkan kata kunci "Modis Terra OceanColour" dalam pencarian data citra satelit.
 
-![6_1](https://github.com/manessa-md/BUDEE/assets/108891611/ed787fb5-7167-4f28-84a4-0a234188b82b)
+![Pemilihan Data MODIS](https://github.com/manessa-md/BUDEE/assets/108891611/ed787fb5-7167-4f28-84a4-0a234188b82b)
 
-## 2. Memahami Informasi Citra Modis
-Pada data setiap citra, memiliki informasi data yang berbeda. Untuk mengetahui tentang Citra Modis yang digunakan, dapat dengan mengkil pada tombol kotak merah:
+## 3. Memahami Informasi Citra MODIS
+Setiap dataset memiliki informasi metadata yang berbeda, termasuk resolusi spasial, rentang waktu pengambilan, dan band yang tersedia. Untuk mengetahui informasi citra yang digunakan, klik tombol informasi pada dataset yang dipilih.
 
-![6_2](https://github.com/manessa-md/BUDEE/assets/108891611/591e4ff1-8e92-49b0-af6b-bdd80d479d2d)
+![Informasi Data MODIS](https://github.com/manessa-md/BUDEE/assets/108891611/591e4ff1-8e92-49b0-af6b-bdd80d479d2d)
 
-
-## 3.Mengimport Citra Modis
-Pengimportan dapat dilakukan dengan menambahkan code script :
-
-```
-var dataset = ee.ImageCollection('NASA/OCEANDATA/MODIS-Terra/L3SMI')
+## 4. Mengimpor Citra MODIS
+Data MODIS dapat diimpor ke Google Earth Engine dengan menambahkan kode berikut:
+```javascript
+var dataset = ee.ImageCollection('NASA/OCEANDATA/MODIS-Terra/L3SMI');
 ```
 
-## 4. Memberi Visualisasi pada Citra
-Pada citra Modis, terdapat band yang langsung menampilkan data Chlorofil. Band tersebut di pilih dan diberi visualisasi
-
-```
+## 5. Memberikan Visualisasi pada Citra MODIS
+MODIS menyediakan beberapa band, salah satunya adalah 'chlor_a' yang menunjukkan konsentrasi Chlorophyll-a. Untuk menampilkan data ini, kita dapat menggunakan kode berikut:
+```javascript
 var chlor = dataset.select(['chlor_a']);
 var Vis = {
   min: 0.0,
@@ -39,20 +36,18 @@ var Vis = {
 };
 ```
 
-## 5. Menampilkan Citra Modis
-Setelah dilakukan pemilihan band dan visualisai. Data dapat ditampilkan dengan code script :
-
-```
+## 6. Menampilkan Citra MODIS
+Setelah band dipilih dan diberi visualisasi, citra dapat ditampilkan menggunakan skrip berikut:
+```javascript
 Map.setCenter(123.8547, -0.8266, 4);
 Map.addLayer(chlor, Vis, 'Chlorophyll a concentration mg/m^3');
 ```
 
-![6_3](https://github.com/manessa-md/BUDEE/assets/108891611/63c05753-d4e5-49ce-b5ff-f6a9c3beeec4)
+![Visualisasi Citra MODIS](https://github.com/manessa-md/BUDEE/assets/108891611/63c05753-d4e5-49ce-b5ff-f6a9c3beeec4)
 
-
-## 6. Membuat Grafik TimeSeries
-```
-// part 02 membuat grafik timeseries 
+## 7. Membuat Grafik Time Series
+Untuk melihat perubahan konsentrasi Chlorophyll-a dalam periode waktu tertentu, kita dapat membuat grafik time series menggunakan kode berikut:
+```javascript
 var chart = ui.Chart.image
               .series({
                 imageCollection:chlor,
@@ -63,7 +58,7 @@ var chart = ui.Chart.image
         })
               .setSeriesNames(['chlor_a'])
               .setOptions({
-                title: 'Chlorofil-a',
+                title: 'Chlorophyll-a',
                 hAxis: {title: 'Date', titleTextStyle: {italic: false, bold: true}},
                 vAxis: {
                   title: 'Chl mg-3',
@@ -75,54 +70,37 @@ var chart = ui.Chart.image
               });
 print(chart);
 ```
+Namun, grafik ini dapat mengalami error jika jumlah elemen yang diproses terlalu banyak.
 
-Namun grafik akan error karena terlalu banyak element yang di running
+![Error Grafik Time Series](https://github.com/manessa-md/BUDEE/assets/108891611/c33455fb-7e55-45a6-b18d-0cd5854cf7f0)
 
-![6_4](https://github.com/manessa-md/BUDEE/assets/108891611/c33455fb-7e55-45a6-b18d-0cd5854cf7f0)
+## 8. Filtering Data
+Agar data lebih mudah dianalisis, perlu dilakukan pemangkasan berdasarkan wilayah dan rentang waktu tertentu.
 
-Sehingga Perlu Adanya Filtering Data
+### a. Menentukan Area Penelitian
+Menentukan area penelitian akan mempermudah proses kliping citra agar analisis lebih fokus.
 
-## 7. FIltering Data
-### Hal yang harus dilakukan telebih dahulu yaitu membuat area penelitian
+![Menentukan Area Penelitian](https://github.com/manessa-md/BUDEE/assets/108891611/f621c364-bd02-4b1e-879e-6ab8b730e2e9)
 
-![3_6](https://github.com/manessa-md/BUDEE/assets/108891611/f621c364-bd02-4b1e-879e-6ab8b730e2e9)
-
-
-Hal tersebut akan memudahkan dalam mengclip data citra
-
-### Kemudian melakukan filter tanggal
-Filter tanggal dilakukan untuk memilih rentang tanggal yang akan digunakan dalam analisis
-
-```
+### b. Memfilter Tanggal
+Untuk memilih rentang waktu yang akan dianalisis, gunakan kode berikut:
+```javascript
 var dataset = ee.ImageCollection('NASA/OCEANDATA/MODIS-Terra/L3SMI')
-                .filterDate('2018-01-01', '2023-06-30')
-                
+                .filterDate('2018-01-01', '2023-06-30');
                 
 function clips(image){return image.clip(aoi).copyProperties(image, ['system:time_start'])}
 
 var chlor = dataset.select(['chlor_a']).map(clips);
 
-var Vis = {
-  min: 0.0,
-  max: 4,
-  palette: [
-    '3500a8','0800ba','003fd6',
-    '00aca9','77f800','ff8800',
-    'b30000','920000','880000'
-  ]
-};
-
 Map.setCenter(123.8547, -0.8266, 10);
 Map.addLayer(chlor, Vis, 'Chlorophyll a concentration mg/m^3');
 ```
 
-![6_5](https://github.com/manessa-md/BUDEE/assets/108891611/623f07f7-80bf-4bc6-9d72-f35acc50433a)
+![Hasil Filtering Data](https://github.com/manessa-md/BUDEE/assets/108891611/623f07f7-80bf-4bc6-9d72-f35acc50433a)
 
-## 8. Buat Grafik Timeseries dari data Citra yang telah di filter
-Data yang telah difilter akan tampil pada grafik.
-
-```
-// part 02 membuat grafik timeseries 
+## 9. Membuat Grafik Time Series dari Data yang Difilter
+Setelah data difilter berdasarkan wilayah dan tanggal, kita dapat membuat grafik time series dengan kode berikut:
+```javascript
 var chart = ui.Chart.image
               .series({
                 imageCollection:chlor,
@@ -133,7 +111,7 @@ var chart = ui.Chart.image
         })
               .setSeriesNames(['chlor_a'])
               .setOptions({
-                title: 'Chlorofil-a',
+                title: 'Chlorophyll-a',
                 hAxis: {title: 'Date', titleTextStyle: {italic: false, bold: true}},
                 vAxis: {
                   title: 'Chl mg-3',
@@ -146,11 +124,13 @@ var chart = ui.Chart.image
 print(chart);                
 ```
 
-![6_6](https://github.com/manessa-md/BUDEE/assets/108891611/bc63e3cc-aa9f-4804-9017-268deaea102e)
+![Grafik Time Series](https://github.com/manessa-md/BUDEE/assets/108891611/bc63e3cc-aa9f-4804-9017-268deaea102e)
 
+## 10. Tugas
+1. Jelaskan secara singkat fungsi dari setiap bagian kode di atas.
+2. Ubah rentang waktu analisis menjadi antara tahun 2015 hingga 2020.
+3. Tambahkan filter spasial untuk hanya menampilkan data di area perairan tertentu.
+4. Bandingkan hasil grafik time series dengan rentang waktu yang berbeda dan buat interpretasi perubahan konsentrasi Chlorophyll-a dari hasil yang didapat.
 
-
-
-
-
+**Selamat Mengerjakan!**
 
