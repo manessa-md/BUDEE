@@ -1,6 +1,7 @@
 ---
 layout: default
-title: "Module 2: GCOM"
+title: "GCOM"
+permalink: /BUDEE/module4.html
 ---
 
 {% include _sidebar.md %}
