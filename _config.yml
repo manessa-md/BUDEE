@@ -1,34 +1,15 @@
-# GitHub Pages Configuration File (_config.yml)
+# GitHub Pages Configuration
+title: "Pelatihan Google Earth Engine"
+description: "Panduan penggunaan Google Earth Engine untuk pemantauan upwelling"
+theme: jekyll-theme-minimal
 
-title: "Pelatihan Google Earth Engine untuk Monitoring Historikal Upwelling"
-description: "Panduan lengkap penggunaan Google Earth Engine untuk pemantauan upwelling di Banggai"
-theme: jekyll-theme-cayman
-
-# Set the base URL to match the repository name
+# Set the base URL and source directory
 baseurl: "/BUDEE"
 url: "https://manessa-md.github.io"
+source: "docs"
 
-# Navigation links
-navigation:
-  - title: "Home"
-    url: "/"
-  - title: "Module 1: Pengenalan GEE"
-    url: "/module1"
-  - title: "Module 2: Dasar Coding GEE"
-    url: "/module2"
-  - title: "Module 3: Sentinel-2"
-    url: "/module3"
-  - title: "Module 4: GCOM"
-    url: "/module4"
-  - title: "Module 5: MODIS"
-    url: "/module5"
-  - title: "Module 6: Landsat-8"
-    url: "/module6"
-  - title: "Module 7: Landsat-8 Time Series"
-    url: "/module7"
-
-# Enable Markdown support
-markdown: kramdown
+# Sidebar Navigation
+include: ["_sidebar.md"]
 
 # Exclude unnecessary files
 exclude:
