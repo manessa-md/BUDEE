@@ -5,6 +5,8 @@ Timeseries data merupakan data yang terekam pada interval waktu tertentu. Dalam 
 
 Modul ini menjelaskan langkah-langkah penerapan algoritma estimasi klorofil-a (Chl-a) menggunakan **Landsat-8** dengan dua algoritma, yaitu **Arief 2006** dan **Hu et al. 2012**, serta menampilkan hasil dalam bentuk grafik timeseries.
 
+![3_6](https://github.com/manessa-md/BUDEE/assets/108891611/d5a72016-90a1-4b55-a187-b3fcf34355d2)
+
 ---
 
 ## 2. Langkah-langkah Implementasi
@@ -21,6 +23,8 @@ Citra yang digunakan adalah **Landsat 8 Level 2, Collection 2, Tier 2**. Proses 
 1. Pemfilteran berdasarkan tanggal.
 2. Masking awan dan bayangan awan menggunakan band QA_PIXEL.
 3. Pemotongan (clipping) citra berdasarkan area penelitian.
+
+![3_1](https://github.com/manessa-md/BUDEE/assets/108891611/50b8ea11-a0e4-42b5-a933-8024b87e765b)
 
 ```javascript
 // Fungsi masking awan
@@ -54,8 +58,13 @@ Map.addLayer(point, {color:"red"}, "Titik Survey", false);
 Map.centerObject(point);
 ```
 
+![3_8](https://github.com/manessa-md/BUDEE/assets/108891611/24a7d901-b981-458e-87ef-80484f8bb553)
+
 ### 2.4. Implementasi Algoritma CHL
 #### Algoritma Arief 2006
+
+![3_9](https://github.com/manessa-md/BUDEE/assets/108891611/ee940a85-1b04-4f70-a5e2-0539e10f57f5)
+
 ```javascript
 function CHLarief2006(img){
   var B2 = img.select("SR_B2");
@@ -73,69 +82,12 @@ Map.addLayer(CHLcol.mean(), {min: 1, max: 3}, "Chl Arief", false);
 ```
 
 ### 2.5. Menampilkan Grafik TimeSeries CHL
-```javascript
-var chart = ui.Chart.image.series({
-          imageCollection: CHLcol,
-          region: AOI,
-          reducer: ee.Reducer.mean(),
-          scale: 100,
-          xProperty: 'system:time_start'
-        })
-        .setSeriesNames(['CHLArief2006'])
-        .setOptions({
-          title: 'Chlorofil-a Timeseries',
-          hAxis: {title: 'Date', titleTextStyle: {italic: false, bold: true}},
-          vAxis: {title: 'Chl mg-3', titleTextStyle: {italic: false, bold: true}},
-          lineWidth:5,
-          colors: ['e37d05'],
-          curveType: 'function'
-        });
-print(chart);
-```
+
+![4_2](https://github.com/manessa-md/BUDEE/assets/108891611/1144d8a0-7dc0-4aae-9086-aa81303326bc)
 
 ### 2.6. Implementasi Algoritma CHL Hu et al. 2012
-```javascript
-function CI(image) {
-    var result = image.expression(
-        'Green - ( Blue + (lambdaGreen - lambdaBlue) / (lambdaRed - lambdaBlue) * (Red - Blue) )',
-        {
-            'Red': image.select('SR_B4'),
-            'lambdaRed': 670,
-            'Green': image.select('SR_B3'),
-            'lambdaGreen': 555,
-            'Blue': image.select('SR_B2'),
-            'lambdaBlue': 443
-        });
-    var CIp = result.multiply(230.47).subtract(0.4287);
-    var CHL = ee.Image(10).pow(CIp).rename('CHLhu');
-    return ee.Image(CHL.copyProperties(image, ['system:time_start']));
-}
 
-var CHLcol_Hu = L8col.map(CI);
-print('Hu et al. image composite', CHLcol_Hu);
-Map.addLayer(CHLcol_Hu.mean(), {min: 1, max: 3}, "Chl Hu", false);
-```
-
-### 2.7. Grafik Timeseries Algoritma Hu et al. 2012
-```javascript
-var chart_Hu = ui.Chart.image.series({
-          imageCollection: CHLcol_Hu,
-          region: AOI,
-          reducer: ee.Reducer.mean(),
-          scale: 100,
-          xProperty: 'system:time_start'
-        })
-        .setSeriesNames(['CHLhu'])
-        .setOptions({
-          title: 'Chlorofil-a Timeseries - Hu et al. 2012',
-          hAxis: {title: 'Date', titleTextStyle: {italic: false, bold: true}},
-          vAxis: {title: 'Chl mg-3', titleTextStyle: {italic: false, bold: true}},
-          lineWidth:5,
-          colors: ['1d6b99'],
-          curveType: 'function'
-        });
-print(chart_Hu);
-```
+![3_11](https://github.com/manessa-md/BUDEE/assets/108891611/199a131e-5ce9-45cd-8ce2-65a07bff4af0)
 
 ---
 
@@ -146,13 +98,15 @@ Dari hasil grafik timeseries:
 
 Modul ini memungkinkan analisis tren perubahan klorofil-a secara temporal menggunakan citra Landsat-8.
 
+![4_3](https://github.com/manessa-md/BUDEE/assets/108891611/7fbe2279-97c7-4780-bbaa-882710f2d5a3)
+
 ---
 
 ## 4. Tugas Modifikasi Kode
 Sebagai latihan tambahan, lakukan modifikasi berikut:
 1. **Gunakan Landsat-9** untuk membandingkan hasil timeseries.
 2. **Coba tambahkan area penelitian lain** untuk melihat perbedaan estimasi Chl-a.
-3. **Eksplorasi metode estimasi lainnya**, seperti Ocean Color 3 (OC3).
+3. **Eksplorasi metode estimasi lainnya**, seperti OC3 atau algoritma berbasis NDVI.
 
 Silakan eksplorasi dan bandingkan hasilnya. Selamat mencoba!
 
