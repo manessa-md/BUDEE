@@ -54,12 +54,3 @@ Setelah mengikuti pelatihan ini, peserta diharapkan mampu:
 7. 📜 [Module 7: Landsat-8 Timeseries](module7.md)
 
 ---
-
-### **✅ Perbaikan dalam Index.md:**
-✔ **Memperbaiki kesalahan ketik** (e.g., "pengunaan" → "penggunaan")  
-✔ **Menambahkan ikon** untuk meningkatkan keterbacaan 📘  
-✔ **Menggunakan tautan relatif untuk GitHub Pages**  
-✔ **Menyesuaikan heading dan subheading** agar lebih terstruktur  
-
-🚀 **Sekarang halaman utama GitHub Pages lebih rapi dan profesional!**  
-Cek apakah **tautan duplikat untuk "Pengenalan GEE"** sudah benar. Jika ada yang perlu diubah, beritahu saya! 🔥
