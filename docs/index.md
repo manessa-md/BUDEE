@@ -8,6 +8,7 @@ Module pelatihan ini dikembangkan oleh **[Dr. Eng. Masita Dwi Mandini Manessa](h
 ## **🛠 Prasyarat**
 
 Penyelesaian latihan ini memerlukan:
+
 ✔ **Browser**: Google Chrome  
 ✔ **Akun**: Google Earth Engine  
 
@@ -35,7 +36,7 @@ Setelah mengikuti pelatihan ini, peserta diharapkan mampu:
 ## **📚 Materi Pelatihan**
 📌 **Materi Presentasi** dapat diakses pada link berikut:
 - 📄 [Historical Upwelling](https://github.com/manessa-md/BUDEE/blob/main/Materi/MDMM-Pemantauan%20Historical%20Upwelling%20Menggunakan%20Data%20Penginderaan%20Jauh.pdf)
-- 📄 [Pengenalan GEE](https://github.com/manessa-md/BUDEE/blob/main/Materi/MDMM-Pemantauan%20Historical%20Upwelling%20Menggunakan%20Data%20Penginderaan%20Jauh.pdf) *(Duplicate link, verify if correct)*
+correct)*
 
 📌 **Data Pelatihan** dapat diakses di sini:  
 📂 [Data & Shapefiles](https://github.com/manessa-md/BUDEE/tree/main/ShapeFile)
