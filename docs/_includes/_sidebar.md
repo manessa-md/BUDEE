@@ -1,7 +1,7 @@
 ## 📌 Navigasi Modul
 
 - [🏠 Beranda](/BUDEE/index.html)
-- [Module 1: Dasar JavaScript & GEE](/BUDEE/docs/module1.html)
+- [Module 1: Dasar JavaScript & GEE](/docs/module1.html)
 - [Module 2: Dasar Coding GEE](/BUDEE/docs/module2.html)
 - [Module 3: Sentinel-2](/BUDEE/docs/module3.html)
 - [Module 4: GCOM](/BUDEE/docs/module4.html)
