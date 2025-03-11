@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Module 5: MODIS"
+---
+
+{% include _sidebar.md %}
+
 # Analisis Time Series dengan Citra MODIS
 
 ## 1. Pendahuluan
