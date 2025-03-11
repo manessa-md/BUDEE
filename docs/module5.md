@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Module 5: MODIS"
+permalink: /BUDEE/module5.html
 ---
 
 {% include _sidebar.md %}
