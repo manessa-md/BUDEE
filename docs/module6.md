@@ -140,12 +140,13 @@ var chart = ui.Chart.feature.byFeature(pointE, 'Chl', ['first'])
 print(chart);
 ```
 
-### **Tugas Modifikasi Kode**
-1. Modifikasi algoritma CHL dengan menggunakan kombinasi band lain (misalnya B5 dan B3).
-2. Bandingkan hasilnya dengan algoritma yang sudah ada.
-3. Tambahkan metode validasi lain seperti Mean Absolute Error (MAE) atau Coefficient of Determination (R²).
 
 ![Gambar Uji Akurasi](https://github.com/manessa-md/BUDEE/assets/108891611/df8b540e-5041-43dd-af74-af3c5c0cd45c)
 
 **Kesimpulan:** Algoritma Arief (2006) menunjukkan hasil lebih baik dibandingkan Hu (2012) berdasarkan nilai R² dan RMSE.
+
+### **Tugas Modifikasi Kode**
+1. Modifikasi algoritma CHL dengan menggunakan kombinasi band lain (misalnya B5 dan B3).
+2. Bandingkan hasilnya dengan algoritma yang sudah ada.
+3. Tambahkan metode validasi lain seperti Mean Absolute Error (MAE) atau Coefficient of Determination (R²).
 
