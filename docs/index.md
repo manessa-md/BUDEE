@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Pelatihan Google Earth Engine"
+---
+
+{% include _sidebar.md %}
+
 # **Pelatihan Google Earth Engine untuk Monitoring Historikal Upwelling**
 
 Module pelatihan ini dikembangkan oleh **[Dr. Eng. Masita Dwi Mandini Manessa](https://www.linkedin.com/in/masita-dwi-mandini-manessa-93b155170/)** untuk Program **Pelatihan penggunaan data penginderaan jauh untuk Monitoring Historikal Upwelling** di Banggai.  
