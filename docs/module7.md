@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Module 7: LANDSAT TIMESERIES"
+permalink: /BUDEE/module7.html
 ---
 
 {% include _sidebar.md %}
