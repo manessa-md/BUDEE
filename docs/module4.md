@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Module 2: GCOM"
+---
+
+{% include _sidebar.md %}
+
 # **Global Change Observation Mission (GCOM)**
 
 ## **Pendahuluan**
