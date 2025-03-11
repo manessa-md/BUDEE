@@ -1,3 +1,11 @@
+---
+layout: default
+title: "Module 1: Dasar Coding JavaScript dan Pengenalan Google Earth Engine"
+---
+
+{% include _sidebar.md %}
+
+
 # Pelatihan Google Earth Engine 
 Module Google Earth Engine Interface
 --------------
