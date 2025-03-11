@@ -131,7 +131,7 @@ Dari hasil validasi:
 Sebagai latihan tambahan, lakukan modifikasi berikut:
 1. **Gunakan Landsat 9** sebagai alternatif untuk melihat perbedaan hasil.
 2. **Tambahkan mask air** untuk menghilangkan daerah daratan dari analisis.
-3. **Coba metode estimasi klorofil lain**, seperti algoritma OC3 atau NDVI berbasis klorofil.
+3. **Coba metode estimasi klorofil lain**, seperti algoritma OC3-OceanColor3.
 
 Silakan implementasikan dan bandingkan hasilnya dengan algoritma di atas. Selamat mencoba!
 
