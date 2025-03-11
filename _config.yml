@@ -1,17 +1,20 @@
 # GitHub Pages Configuration
 title: "Pelatihan Google Earth Engine"
 description: "Panduan penggunaan Google Earth Engine untuk pemantauan upwelling"
-theme: jekyll-theme-minimal
+theme: minima  # Use a valid Jekyll theme
 
-# Set the base URL and source directory
-baseurl: "/BUDEE"
+# Set the base URL (Leave blank if using root domain)
+baseurl: "/BUDEE"  # Remove if unnecessary
 url: "https://manessa-md.github.io"
-source: "docs"
+
+# Source directory for GitHub Pages
+source: docs
 
 # Sidebar Navigation
-include: ["_sidebar.md"]
+include:
+  - "_sidebar.md"
 
-# Exclude unnecessary files
+# Exclude unnecessary files from the build
 exclude:
   - README.md
   - Gemfile
