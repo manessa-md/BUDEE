@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 .sidebar {
@@ -11,12 +11,28 @@ body {
     background-color: #f4f4f4;
     padding: 15px;
     position: fixed;
+    left: 0;
+    top: 0;
     overflow-y: auto;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    border-right: 2px solid #ddd;
 }
 
 .content {
     margin-left: 270px;
     padding: 20px;
     max-width: 800px;
+}
+
+h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
