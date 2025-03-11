@@ -1,84 +1,105 @@
-# Menerapkan Algoritma Chlorophyll pada Citra Landsat 8
+# **Menerapkan Algoritma Chlorophyll pada Citra Landsat 8**
 
-## 1. Pendahuluan
-Landsat-8 adalah satelit penginderaan jauh milik Amerika Serikat yang diluncurkan pada 11 Februari 2013. Satelit ini memiliki dua sensor utama, yaitu **Operational Land Imager (OLI)** dan **Thermal Infrared Sensor (TIRS)**. Sensor OLI digunakan untuk mengamati reflektansi di spektrum tampak dan inframerah dekat (NIR), sementara TIRS digunakan untuk mengamati emisi termal dari permukaan bumi.
+## **Pendahuluan**
+Landsat-8 merupakan satelit observasi bumi milik Amerika Serikat yang diluncurkan pada 11 Februari 2013. Satelit ini memiliki dua sensor utama, yaitu:
+1. **Operational Land Imager (OLI)** - Menghasilkan citra dengan resolusi spasial 30 meter (visible, NIR, SWIR), 100 meter (thermal), dan 15 meter (pankromatik).
+2. **Thermal Infrared Sensor (TIRS)** - Digunakan untuk pemetaan suhu permukaan tanah dan laut.
 
-Landsat-8 memiliki resolusi spasial:
-- 30 meter untuk band tampak (B2-B4), NIR (B5), dan SWIR (B6-B7).
-- 100 meter untuk band termal (TIRS: B10 dan B11).
-- 15 meter untuk band pankromatik (B8).
-
-Pada modul ini, kita akan menerapkan algoritma estimasi konsentrasi klorofil-a (Chl-a) menggunakan dua metode berbeda pada citra Landsat-8, yaitu **algoritma Arief 2006** dan **algoritma Hu et al. 2012**. Selain itu, akan dilakukan uji akurasi terhadap data lapangan.
+Pada modul ini, kita akan menerapkan algoritma estimasi klorofil (Chlorophyll, CHL) pada citra Landsat-8. Langkah-langkah yang akan dilakukan meliputi:
+1. Menentukan Area Penelitian
+2. Mengimpor Citra Landsat-8
+3. Mengimpor Data Lapangan ke Google Earth Engine (GEE)
+4. Mengimplementasikan Algoritma CHL
+5. Melakukan Uji Akurasi Algoritma
 
 ---
 
-## 2. Langkah-langkah Implementasi
-### 2.1. Menentukan Area Penelitian
-Menentukan area yang akan dianalisis dengan membuat poligon area penelitian:
+## **1. Menentukan Area Penelitian**
+
+Langkah pertama adalah menentukan area penelitian dengan menambahkan kotak area (Area of Interest, AOI). Untuk mempermudah pemrosesan data, buatlah objek **geometry** yang merepresentasikan AOI tersebut.
+
+**Contoh kode:**
 ```javascript
-// Menentukan area penelitian dari koleksi fitur
-var AOI = ee.FeatureCollection("projects/ee-budeetraining/assets/Banggai_area"); // Ganti sesuai dengan aset Anda
+// Menentukan Area Penelitian
+var AOI = ee.FeatureCollection("projects/ee-budeetraining/assets/Banggai_area"); // Sesuaikan dengan data Anda
 ```
 
-### 2.2. Mengimpor Citra Landsat-8
-Citra yang digunakan adalah **Landsat 8 Level 2, Collection 2, Tier 2**. Proses ini mencakup:
-1. Pemfilteran berdasarkan tanggal.
-2. Masking awan dan bayangan awan menggunakan band QA_PIXEL.
-3. Pemilihan band yang diperlukan dan pemotongan (clipping) berdasarkan area penelitian.
+![Gambar Area Penelitian](https://github.com/manessa-md/BUDEE/assets/108891611/26a62f5c-4e12-4cbf-9629-64e2217afc24)
 
+---
+
+## **2. Mengimpor Citra Landsat-8**
+Citra Landsat-8 dapat diakses melalui Google Earth Engine (GEE). Modul ini menggunakan dataset **Landsat 8 Level 2, Collection 2, Tier 2**.
+
+### **Langkah-langkah:**
+- Mencari citra Landsat-8 melalui tabel pencarian di GEE.
+- Menggunakan fungsi *masking* untuk menghilangkan awan dan bayangan awan.
+- Menyeleksi band yang diperlukan dan melakukan *clipping* berdasarkan AOI.
+
+**Kode untuk mengimpor citra Landsat-8:**
 ```javascript
-// Fungsi untuk masking awan
+// Fungsi untuk menghilangkan awan
 function maskL8sr(image) {
-  var cloudShadowBitMask = (1 << 3);
-  var cloudsBitMask = (1 << 5);
+  var cloudShadowBitMask = (1 << 3); // 1000 dalam biner
+  var cloudsBitMask = (1 << 5); // 100000 dalam biner
   var qa = image.select('QA_PIXEL');
   var mask = qa.bitwiseAnd(cloudShadowBitMask).eq(0)
-                 .and(qa.bitwiseAnd(cloudsBitMask).eq(0));
+               .and(qa.bitwiseAnd(cloudsBitMask).eq(0));
   return image.updateMask(mask);
 }
 
-// Memuat dan memproses koleksi citra Landsat-8
+// Mengimpor citra Landsat-8
 var L8col = ee.ImageCollection("LANDSAT/LC08/C02/T2_L2")
               .filterDate('2022-07-01', '2022-09-30')
               .map(maskL8sr)
               .select('SR_B[1-7]')
-              .map(function(image){return image.rename(['B1', 'B2', 'B3', 'B4','B5','B6','B7']).clip(AOI)});
+              .map(function(image) {
+                  return image.rename(['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7']).clip(AOI);
+              });
 var L8com = L8col.median();
-
-// Menampilkan citra RGB
-Map.addLayer(L8col, {bands: ['B4', 'B3', 'B2'], min:0, max: 0.3}, "RGB Landsat", false);
+Map.addLayer(L8col, {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3}, "RGB Landsat", false);
 ```
 
-### 2.3. Mengimpor Data Lapangan
+![Gambar Citra Landsat](https://github.com/manessa-md/BUDEE/assets/108891611/b07d0e81-7aab-4c3e-ba83-719f053ffc0f)
+
+---
+
+## **3. Mengimpor Data Lapangan**
+Data lapangan digunakan untuk validasi hasil estimasi klorofil. Data ini dapat diunggah sebagai **FeatureCollection** pada GEE.
+
+**Kode untuk mengimpor data lapangan:**
 ```javascript
-// Mengimpor titik data lapangan
-var point = ee.FeatureCollection("projects/ee-budeetraining/assets/Survey_point");
+// Mengimpor data survey lapangan
+var point = ee.FeatureCollection("projects/ee-budeetraining/assets/Survey_point"); // Sesuaikan dengan aset Anda
 print(point);
 
 // Menampilkan titik survey di peta
-Map.addLayer(point, {color:"red"}, "Titik Survey", false);
+Map.addLayer(point, {color: "red"}, "Titik Survey", false);
 Map.centerObject(point);
 ```
 
-### 2.4. Mengimplementasi Algoritma CHL
-#### Algoritma Arief 2006
+![Gambar Data Lapangan](https://github.com/manessa-md/BUDEE/assets/108891611/3fce73d3-6862-45de-9455-4bae17c3ce03)
+
+---
+
+## **4. Mengimplementasikan Algoritma CHL**
+
+### **A. Algoritma Arief (2006)**
+
+Algoritma ini menggunakan rasio band untuk menghitung klorofil:
 ```javascript
 function CHLarief2006(img){
   var B2 = img.select("B2");
   var B3 = img.select("B3");
-  var a = ee.Image(B2).subtract(ee.Image(B3));
-  var b = ee.Image(B2).add(ee.Image(B3));
-  var rrs = ee.Image(a).divide(ee.Image(b));
-  var CHL = ((ee.Image(rrs.multiply(17.912)).subtract(0.3343)).rename('CHLarief2006'));
-  return ee.Image(CHL.copyProperties(img, ['system:time_start']));
+  var rrs = B2.subtract(B3).divide(B2.add(B3));
+  var CHL = rrs.multiply(17.912).subtract(0.3343).rename('CHLarief2006');
+  return CHL.copyProperties(img, ['system:time_start']);
 }
-
-var CHLcom = CHLarief2006(L8com);
-print('Arief 2006 image composite', CHLcom);
-Map.addLayer(CHLcom, {min: 1, max: 3}, "Chl Arief", false);
 ```
 
-#### Algoritma Hu et al. 2012
+### **B. Algoritma Hu (2012)**
+
+Algoritma ini menggunakan indeks warna:
 ```javascript
 function CI(image) {
     var result = image.expression(
@@ -91,47 +112,40 @@ function CI(image) {
             'Blue': image.select('B2'),
             'lambdaBlue': 443
         });
+    
     var CIp = result.multiply(230.47).subtract(0.4287);
     var CHL = ee.Image(10).pow(CIp).rename('CHLhu');
-    return ee.Image(CHL.copyProperties(image, ['system:time_start']));
+    return CHL.copyProperties(image, ['system:time_start']);
 }
-
-var CHLcom_Hu = CI(L8com);
-print('Hu et al. image composite', CHLcom_Hu);
-Map.addLayer(CHLcom_Hu, {min: 1, max: 3}, "Chl Hu", false);
 ```
 
-### 2.5. Uji Akurasi dengan Data Lapangan
+---
+
+## **5. Uji Akurasi dengan Data Lapangan**
+
+Uji akurasi dilakukan dengan membandingkan nilai klorofil hasil estimasi dengan data lapangan menggunakan **Scatter Plot** dan menghitung **RMSE**.
+
 ```javascript
 var pointExtract = CHLcom.reduceRegions(point, ee.Reducer.first(), 30);
 var pointE = pointExtract.filter(ee.Filter.neq('first', null));
-print ('pointE chl', pointE);
 
 var chart = ui.Chart.feature.byFeature(pointE, 'Chl', ['first'])
   .setChartType('ScatterChart')
   .setOptions({
     titleX: 'Measured Chl',
-    titleY: 'Predic Chl',
+    titleY: 'Predicted Chl',
     pointSize: 3,
-    trendlines: { 0: {showR2: true, visibleInLegend: true} }
+    trendlines: {0: {showR2: true, visibleInLegend: true}}
   });
 print(chart);
 ```
 
-## 3. Kesimpulan
-Dari hasil validasi:
-- **Algoritma Arief 2006**: R² = 0.059, RMSE = 0.82.
-- **Algoritma Hu et al. 2012**: R² = 0.028, RMSE = 200.91.
+### **Tugas Modifikasi Kode**
+1. Modifikasi algoritma CHL dengan menggunakan kombinasi band lain (misalnya B5 dan B3).
+2. Bandingkan hasilnya dengan algoritma yang sudah ada.
+3. Tambahkan metode validasi lain seperti Mean Absolute Error (MAE) atau Coefficient of Determination (R²).
 
-**Algoritma Arief 2006 menunjukkan hasil yang lebih baik dibandingkan Algoritma Hu 2012 untuk estimasi klorofil-a.**
+![Gambar Uji Akurasi](https://github.com/manessa-md/BUDEE/assets/108891611/df8b540e-5041-43dd-af74-af3c5c0cd45c)
 
----
-
-## 4. Tugas Modifikasi Kode
-Sebagai latihan tambahan, lakukan modifikasi berikut:
-1. **Gunakan Landsat 9** sebagai alternatif untuk melihat perbedaan hasil.
-2. **Tambahkan mask air** untuk menghilangkan daerah daratan dari analisis.
-3. **Coba metode estimasi klorofil lain**, seperti algoritma OC3-OceanColor3.
-
-Silakan implementasikan dan bandingkan hasilnya dengan algoritma di atas. Selamat mencoba!
+**Kesimpulan:** Algoritma Arief (2006) menunjukkan hasil lebih baik dibandingkan Hu (2012) berdasarkan nilai R² dan RMSE.
 
