@@ -1,49 +1,43 @@
----
-layout: default
-title: "Pelatihan Google Earth Engine"
----
+# Pelatihan Google Earth Engine untuk Monitoring Historikal Upwelling
 
-{% include _sidebar.md %}
+Module pelatihan ini dikembangkan oleh **Dr. Eng. Masita Dwi Mandini Manessa** untuk Program Pelatihan penggunaan data penginderaan jauh untuk Monitoring Historikal Upwelling di Banggai. Pelatihan dilaksanakan pada **27 Juni 2023**.
 
-# **Pelatihan Google Earth Engine untuk Monitoring Historikal Upwelling**
+## **Prasyarat**
+Penyelesaian latihan ini memerlukan penggunaan **browser Google Chrome** dan akun **Google Earth Engine**.  
+Jika Anda belum mendaftar, lakukan sekarang dengan menggunakan link berikut:  
+➡️ [Earth Engine Account Registration](https://signup.earthengine.google.com)
 
-Module pelatihan ini dikembangkan oleh **[Dr. Eng. Masita Dwi Mandini Manessa](https://www.linkedin.com/in/masita-dwi-mandini-manessa-93b155170/)** untuk Program **Pelatihan penggunaan data penginderaan jauh untuk Monitoring Historikal Upwelling** di Banggai.  
-📅 **Pelatihan dilaksanakan pada 27 Juni 2023.**  
-
----
-
-## **🛠 Prasyarat**
-
-Penyelesaian latihan ini memerlukan:
-
-✔ **Browser**: Google Chrome  
-✔ **Akun**: Google Earth Engine  
-
-💡 **Jika belum mendaftar, daftar sekarang:**  
-➡️ [Daftar Earth Engine](https://signup.earthengine.google.com/)
-
-🔗 **Setelah terdaftar, akses Google Earth Engine di sini:**  
+Setelah terdaftar, akses Google Earth Engine di link berikut:  
 ➡️ [Google Earth Engine](https://code.earthengine.google.com)
 
 ---
 
-## **🎯 Tujuan Pelatihan**
+## **📌 Tujuan Pelatihan**
 Setelah mengikuti pelatihan ini, peserta diharapkan mampu:
 
-1️⃣ Menggunakan antarmuka **Editor Kode Google Earth Engine**  
-2️⃣ Menggunakan **JavaScript** untuk menulis skrip di Google Earth Engine  
-3️⃣ Memahami skrip sederhana di Google Earth Engine  
-4️⃣ Mengakses **data raster penginderaan jauh** dari Google Earth Engine  
-5️⃣ Menerapkan **algoritme chlorofil-a** ke data **Sentinel-2 & Landsat-8**  
-6️⃣ Memvisualisasikan **plot deret waktu** di Google Earth Engine  
-7️⃣ Membuat **infografis spasial**  
+✅ Menggunakan antarmuka Editor Kode Google Earth Engine  
+✅ Menggunakan **JavaScript** untuk menulis skrip di Google Earth Engine  
+✅ Memahami skrip sederhana di Google Earth Engine  
+✅ Mengakses data raster penginderaan jauh dari Google Earth Engine  
+✅ Menerapkan algoritme **chlorofil-a** ke data Sentinel-2 dan Landsat-8  
+✅ Memvisualisasikan **plot deret waktu** di Google Earth Engine  
+✅ Membuat **infografis spasial**
 
 ---
 
-## **📚 Materi Pelatihan**
-📌 **Materi Presentasi** dapat diakses pada link berikut:
-- 📄 [Historical Upwelling](https://github.com/manessa-md/BUDEE/blob/main/Materi/MDMM-Pemantauan%20Historical%20Upwelling%20Menggunakan%20Data%20Penginderaan%20Jauh.pdf)
+## **📂 Materi Pelatihan**
+📝 **Materi Presentasi:**  
+- [Histrorical Upwelling](#)  
+- [Pengenalan GEE](#)  
 
-📌 **Data Pelatihan** dapat diakses di sini:  
-📂 [Data & Shapefiles](https://github.com/manessa-md/BUDEE/tree/main/ShapeFile)
+📊 **Data dapat diakses di sini:**  
+- [Data](#)
 
+📘 **Module Pelatihan:**  
+- [Module 1: Dasar Coding JavaScript dan Pengenalan GEE](module1.md)  
+- [Module 2: Dasar Coding Google Earth Engine](module2.md)  
+- [Module 3: Sentinel-2](module3.md)  
+- [Module 4: GCOM](module4.md)  
+- [Module 5: MODIS](module5.md)  
+- [Module 6: Landsat-8](module6.md)  
+- [Module 7: Landsat-8 Time Series](module7.md)  
